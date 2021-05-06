@@ -43,7 +43,7 @@ namespace TestProject1
             Assert.AreEqual(200, res.StatusCode);
         }
         [Test]
-        public void GetStockInformation_InValidInput_ReturnsMedicineList()
+        public void GetStockInformation_InValidInput_ReturnsNull()
         {
             medicineStock = null;
             _service.Setup(x => x.GetStockDetails()).Returns(medicineStock);
@@ -52,5 +52,17 @@ namespace TestProject1
             var res = data as OkObjectResult;
             Assert.IsNull(res);
         }
+
+        [Test]
+        public void GetStockInformation_ValidInput_ReturnsSuccessResponse()
+        {
+            _service.Setup(x => x.GetStockDetails()).Returns(medicineStock);
+            var controller = new MedicineStockInformationController(_service.Object);
+            var data = controller.GetMedicineStock();
+            var res = data as OkObjectResult;
+            Assert.AreEqual(200, res.StatusCode);
+        }
+
+
     }
 }

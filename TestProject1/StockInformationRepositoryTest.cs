@@ -49,7 +49,7 @@ namespace TestProject1
         }
 
         [Test]
-        public void StockRepository_InValidInput_FailCase_ReturnsNull()
+        public void StockRepository_InValidInput_ReturnsNull()
         {
             medicineStock = null;
             _repository.Setup(m => m.GetStockDetails()).Returns(medicineStock);
